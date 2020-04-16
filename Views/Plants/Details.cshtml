@@ -1,0 +1,86 @@
+﻿@model TestFarm.ViewModels.PlantDetailsViewModel
+
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+<div class="card-deck">
+    <div class="card">
+        <div class="card-header">
+            <h1>@Model.Plant.Name</h1>
+        </div>
+
+        <div class="card-body text-center">
+            <img class="card-img-top" src="~/images/@Model.Plant.Image" asp-append-version="true" />
+
+            <h4>SKU Id: @Model.Plant.PlantId</h4>
+            <h4>Plant Size: @Model.Plant.SizeNavigation.Name</h4>
+            <h4>Soil Days: @Model.Plant.SoilDays</h4>
+            <h4>Aeroponic Days: @(Model.Plant.SoilDays * 0.40)</h4>
+        </div>
+
+        <div class="card-footer text-center">
+            <a asp-controller="plant" asp-action="index"
+               class="btn btn-primary">Back</a>
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+    
+
+
+    @*@<div class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            <div class="col-auto mb-3">
+                <div class="card" style="width: 25rem;">                  
+                    <div class="card-header">
+                        <h1>@Model.Plant.Name</h1>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <img class="card-img-top" src="~/images/@Model.Plant.Image" asp-append-version="true" />
+
+                        <h4>SKU Id: @Model.Plant.PlantId</h4>
+                        <h4>Plant Size: @Model.Plant.SizeNavigation.Name</h4>
+                        <h4>Soil Days: @Model.Plant.SoilDays</h4>
+                        <h4>Aeroponic Days: @(Model.Plant.SoilDays * 0.40)</h4>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a asp-controller="plant" asp-action="index"
+                            class="btn btn-primary">Back</a>
+                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+                    @section Scripts{
+                        <script src="~/js/CustomScript.js"></script>
+                    }
+
+                    @*<table>
+                        <thead>
+                            <tr>
+                                <th>Plant Id</th>
+                                <th>Plant Name</th>
+                                <th>Growth Time</th>
+                                <th>Nutrients</th>
+                                <th>Daily Water Needs</th>
+                                <th>Number Available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Plant.Id</td>
+                                <td>@Model.Plant.PlantName</td>
+                                <td>@Model.Plant.GrowingTime @Model.Plant.GrowingType</td>
+                                <td>@Model.Plant.Nutrients</td>
+                                <td>@Model.Plant.WaterOunces ounces</td>
+                                <td>@Model.Plant.NumberAvailable</td>
+                            </tr>
+                        </tbody>
+                    </table>*@

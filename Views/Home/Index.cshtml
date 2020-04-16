@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Vertical Farming";
+}
+    <div class="card-deck">
+       @*@ <div class="card m-3">
+            <div class="card-header">
+                <h3>Planters</h3>
+            </div>
+            <img class="card-img-top" src="~/images/TowerGarden.jfif" asp-append-version="true" />
+            <div class="card-footer text-center">
+                <a asp-controller="planter" asp-action="index"
+                   class="btn btn-primary">View</a>
+                @Url.Action("details", "plant", new { Id = plant.Id})
+                @Html.ActionLink("View","details","plant", new { Id = plant.Id})
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>*@
+
+        <div class="card m-3">
+            <div class="card-header">
+                <h3>Plants</h3>
+            </div>
+            <img class="card-img-top" src="~/images/vegetables.jfif" asp-append-version="true" />
+            <div class="card-footer text-center">
+                <a asp-controller="plant" asp-action="index"
+                   class="btn btn-primary">View</a>
+                @*@Url.Action("details", "plant", new { Id = plant.Id})
+                @Html.ActionLink("View","details","plant", new { Id = plant.Id})*@
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
