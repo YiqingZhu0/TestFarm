@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestFarm.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestFarm.Models
 {
@@ -34,12 +35,17 @@ namespace TestFarm.Models
 
         public Tower GetTower(int Id)
         {
-            return context.Towers.Find(Id);
+            return context.Towers
+                .Include(t => t.TowerTypeNavigation)
+                .Include(t => t.LocationNavigation)
+                .FirstOrDefault(t => t.TowerId == Id);
         }
 
         public IEnumerable<Tower> GetTowers()
         {
-            return context.Towers;
+            return context.Towers
+                .Include(t => t.TowerTypeNavigation)
+                .Include(t => t.LocationNavigation);
         }
 
         public Tower Update(Tower towerChanges)

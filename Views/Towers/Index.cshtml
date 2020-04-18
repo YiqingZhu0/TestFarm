@@ -1,0 +1,24 @@
+﻿@model IEnumerable<TestFarm.Models.Tower>
+
+@{
+    ViewBag.Title = "Tower List";
+}
+<div class="card-deck">
+    @foreach (var tower in Model)
+    {
+        <div class="card m-3">
+            <div class="card-header">
+                <h3>@tower.Name</h3>
+            </div>
+            <img class="card-img-top" src="~/images/@tower.TowerTypeNavigation.Image" asp-append-version="true" />
+            <div class="card-footer text-center">
+                <a asp-controller="tower" asp-action="details" asp-route-Id="@tower.TowerId"
+                   class="btn btn-primary">View</a>
+                @*@Url.Action("details", "plant", new { Id = plant.Id})
+                    @Html.ActionLink("View","details","plant", new { Id = plant.Id})*@
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>

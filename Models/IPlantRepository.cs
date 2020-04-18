@@ -8,7 +8,7 @@ namespace TestFarm.Models
     public interface IPlantRepository
     {
         Plant GetPlant(int Id);
-        IEnumerable<Plant> GetPlants();
+        IQueryable<Plant> GetPlants();
         Plant Add(Plant plant);
         Plant Update(Plant plantChanges);
         Plant Delete(int Id);

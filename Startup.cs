@@ -45,7 +45,12 @@ namespace TestFarm
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "pagination",
+                    template: "Plants/Page{plantPage}",
+                    defaults: new { Controller = "Plant", action = "Index" });
+                routes.MapRoute(
+                    "default", "{controller=Home}/{action=Index}/{id?}");
             });
             
             //app.UseRouting();

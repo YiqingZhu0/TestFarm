@@ -42,7 +42,7 @@ namespace TestFarm.Models
                 .Include(p => p.CategoryNavigation).FirstOrDefault(p => p.PlantId == Id);
         }
 
-        public IEnumerable<Plant> GetPlants()
+        public IQueryable<Plant> GetPlants()
         {
             return context.Plants
                 .Include(p => p.SizeNavigation)
