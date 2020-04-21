@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TestFarm.Models.Tower>
+
+@{
+    ViewBag.Title = "All Towers";
+    Layout = "_AdminLayout";
+}
+
+<table class="table table-striped table-bordered table-sm">
+    <tr>
+        <th class="text-right">ID</th>
+        <th>Name</th>
+        <th>Tower Type</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.TowerId</td>
+            <td>@item.Name</td>
+            <td>@item.TowerTypeNavigation.TowerName</td>
+            <td>@item.TowerTypeNavigation.TowerDesc (@item.TowerTypeNavigation.Size Ports)</td>
+            <td>Aisle: @item.LocationNavigation.Aisle - Section: @item.LocationNavigation.AisleSection</td>
+            <td class="text-center">
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" class="btn btn-sm btn-warning"
+                       asp-route-towerId="@item.TowerId">
+                        Edit
+                    </a>
+                    <input type="hidden" name="TowerId" value="@item.TowerId" />
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>"
+<div class="text-center">
+    <a asp-action="Add" class="btn btn-primary">Add Tower</a>
+</div>

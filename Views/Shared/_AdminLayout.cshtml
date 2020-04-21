@@ -7,7 +7,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
-<body>
+<body class="m-1 p-1">
     <div class="container">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <a class="navbar-brand" asp-controller="plant" asp-action="index">
@@ -29,12 +29,19 @@
             </ul>
         </nav>
         <div class="container-fluid">
+            <div class="bg-info p-2"><h4>@ViewBag.Title</h4></div>
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success">@TempData["message"]</div>
+            }
             @RenderBody()
         </div>
-        @if (IsSectionDefined("Scripts"))
-        {
-            @RenderSection("Scripts", required: true)
-        }
     </div>
+        @*<div class="bg-info p-2"><h4>@ViewBag.Title</h4></div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        @RenderBody()*@
 </body>
 </html>

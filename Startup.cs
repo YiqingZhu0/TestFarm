@@ -32,6 +32,10 @@ namespace TestFarm
             services.AddScoped<ICropRepository, DbCropRepository>();
             services.AddScoped<IPlantRepository, DbPlantRepository>();
             services.AddScoped<ITowerRepository, DbTowerRepository>();
+            services.AddScoped<ILstPlantTypeRepository, DbLstPlantTypeRepository>();
+            services.AddScoped<ILstPlantSizeRepository, DbLstPlantSizeRepository>();
+            services.AddScoped<ILstTowerTypeRepository, DbLstTowerTypeRepository>();
+            services.AddScoped<ILstLocationsRepository, DbLstLocationsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

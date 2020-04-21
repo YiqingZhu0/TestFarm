@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TestFarm.Models.Plant>
+
+@{ 
+    ViewBag.Title = "All Plants";
+    Layout = "_AdminLayout";
+}
+
+<table class="table table-striped table-bordered table-sm">
+    <tr>
+        <th class="text-right">ID</th>
+        <th>Name</th>
+        <th>Abbreviation</th>
+        <th class="text-right">Price</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Soil Days</th>
+        <th>Aeroponic Days</th>
+        <th>Amount On Hand</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.PlantId</td>
+            <td>@item.Name</td>
+            <td>@item.Abbrev</td>
+            <td class="text-right">@item.Pricing.FirstOrDefault(p => p.EndDate == null).PricePerItem</td>
+            <td>@item.CategoryNavigation.Name</td>
+            <td>@item.SizeNavigation.Name</td>
+            <td>@item.SoilDays</td>
+            <td>@item.AeroponicDays</td>
+            <td>@item.AmountOnHand</td>
+            <td class="text-center">
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" class="btn btn-sm btn-warning"
+                       asp-route-plantId="@item.PlantId">
+                        Edit
+                    </a>
+                    <input type="hidden" name="PlantId" value="@item.PlantId" />
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<div class="text-center">
+    <a asp-action="Add" class="btn btn-primary">Add Plant</a>
+</div>

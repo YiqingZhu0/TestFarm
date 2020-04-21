@@ -8,6 +8,7 @@ namespace TestFarm.Models
         public Plant()
         {
             Crop = new HashSet<Crop>();
+            Pricing = new HashSet<Pricing>();
         }
 
         public int PlantId { get; set; }
@@ -25,5 +26,6 @@ namespace TestFarm.Models
         public virtual LstPlantType CategoryNavigation { get; set; }
         public virtual LstPlantSize SizeNavigation { get; set; }
         public virtual ICollection<Crop> Crop { get; set; }
+        public virtual ICollection<Pricing> Pricing { get; set; }
     }
 }

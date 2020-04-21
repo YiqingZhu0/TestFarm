@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace TestFarm.Models
@@ -20,6 +21,7 @@ namespace TestFarm.Models
         public virtual DbSet<Crop> Crops { get; set; }
         public virtual DbSet<Plant> Plants { get; set; }
         public virtual DbSet<Port> Ports { get; set; }
+        public virtual DbSet<Pricing> Pricings { get; set; }
         public virtual DbSet<Tower> Towers { get; set; }
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -67,6 +69,9 @@ namespace TestFarm.Models
 
             modelBuilder.Entity<LstPlantType>(entity =>
             {
+                //entity.HasKey(e => e.Id)
+                //    .HasName("PK__lstPlant__3214EC073F5026ED");
+
                 entity.ToTable("lstPlantType");
 
                 entity.Property(e => e.Abbrev).HasMaxLength(5);
@@ -100,6 +105,8 @@ namespace TestFarm.Models
                     .HasName("PK__tblCropS__24FABA028868D436");
 
                 entity.ToTable("tblCropStatus");
+
+                entity.Property(e => e.StatusDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Crop)
                     .WithMany(p => p.CropStatus)
@@ -175,6 +182,25 @@ namespace TestFarm.Models
                     .WithMany(p => p.Port)
                     .HasForeignKey(d => d.TowerId)
                     .HasConstraintName("FK_tblPorts_tblTower");
+            });
+
+            modelBuilder.Entity<Pricing>(entity =>
+            {
+                entity.HasKey(e => e.PricingId)
+                    .HasName("PK__tblPrici__EC306B12A6E9A606");
+
+                entity.ToTable("tblPricing");
+
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
+                //entity.Property(e => e.PricePerItem).HasColumnType(d);
+
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Plant)
+                    .WithMany(p => p.Pricing)
+                    .HasForeignKey(d => d.PlantId)
+                    .HasConstraintName("FK_tblPricing_tblPlant");
             });
 
             modelBuilder.Entity<Tower>(entity =>

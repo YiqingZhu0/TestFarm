@@ -1,0 +1,63 @@
+﻿@model Plant
+
+
+@{ 
+    ViewBag.Title = "Edit Plant";
+    Layout = "_AdminLayout";
+}
+<container></container>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="PlantId" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Abbrev"></label>
+        <input asp-for="Abbrev" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category" class="control-label"></label>
+        <select class="form-control" asp-for="Category" asp-items="ViewBag.Category">
+            <option disabled selected value="">Select a Type</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Size" class="control-label"></label>
+        <select class="form-control" asp-for="Size" asp-items="ViewBag.Size">
+            <option disabled selected value="">Select a Size</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SoilDays">Soil Days</label>
+        <input asp-for="SoilDays" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="AeroponicDays">Aeroponic Days</label>
+        <input asp-for="AeroponicDays" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AverageHarvestNumber"></label>
+        <input asp-for="AverageHarvestNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="AmountOnHand">Amount On Hand</label>
+        <input asp-for="AmountOnHand" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Pricing.FirstOrDefault(p => p.EndDate == null).PricePerItem">Price</label>
+        <input asp-for="Pricing.FirstOrDefault(p => p.EndDate == null).PricePerItem" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

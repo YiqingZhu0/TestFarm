@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestFarm.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace TestFarm.Models
 {
@@ -39,14 +40,16 @@ namespace TestFarm.Models
         {
             return context.Plants
                 .Include(p => p.SizeNavigation)
-                .Include(p => p.CategoryNavigation).FirstOrDefault(p => p.PlantId == Id);
+                .Include(p => p.CategoryNavigation)
+                .Include(p => p.Pricing).FirstOrDefault(p => p.PlantId == Id);
         }
 
         public IQueryable<Plant> GetPlants()
         {
             return context.Plants
                 .Include(p => p.SizeNavigation)
-                .Include(p => p.CategoryNavigation);
+                .Include(p => p.CategoryNavigation)
+                .Include(p => p.Pricing);
         }
 
         public Plant Update(Plant plantChanges)
